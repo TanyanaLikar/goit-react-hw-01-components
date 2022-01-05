@@ -1,11 +1,26 @@
-import "./App.css";
+import PropTypes from "prop-types";
+import user from './data/user.json';
+import Profile from './components/Profile/Profile';
+import data from './data/data.json';
+import Statistics from './components/Statistics/Statistics'
 
-function App() {
+
+
+export default function App() {  
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <div>
+      <Profile
+        username={user.username}
+        tag={user.tag}
+        location={user.location}
+        avatar={user.avatar}
+        stats={user.stats}
+       />
+      <Statistics title="Upload stats" stats={data} />;
+      <Statistics stats={data} />;
     </div>
   );
 }
 
-export default App;
+
+
