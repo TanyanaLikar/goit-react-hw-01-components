@@ -1,28 +1,29 @@
 import PropTypes from "prop-types";
+import {Title, StatList,Statsection,Item} from "./Statistics.styled"
+import getRandomHexColor from "./getRandomColor"
 
 export default function Statistics ({title, stats}){
-    return (<section class="statistics">
-    {title && <h2>{title}</h2>}
+    return (<Statsection>
+    {title && <Title>{title}</Title> }
   
-    <ul class="stat-list">
-    
+    <StatList>    
      {stats.map(stat => (
-          <li key = {stat.id}>            
+          <Item key = {stat.id}
+          style={{ backgroundColor: getRandomHexColor() }}>            
             <span>{stat.label}</span>
-            <span>{stat.percentage}%</span>
-          </li>
+            <span>{stat.percentage} %</span>
+          </Item>
         ))}
     
-    </ul>
-  </section>)
+    </StatList>
+  </Statsection>)
 }
 Statistics.prototype ={
-  title: PropTypes.string.isRequired,
-  stats: PropTypes.arrayOf(
-    PropTypes.shape({
+  title: PropTypes.string,
+  stats: PropTypes.shape({
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
     }),
-  ),
+
 }

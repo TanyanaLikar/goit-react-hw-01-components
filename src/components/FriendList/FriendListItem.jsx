@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types';
+import {StatusOn,StatusOff,Item,Name,Avatar} from './FriendList.styled'
 
-export default function FriendListItem ( {friendData:{avatar,isOnline, name}}){
+export default function FriendListItem ({isOnline, name, avatar}){
    return (
-    <li>
-    {isOnline ? 'Онлайн' : 'Оффлайн'}
-    <img className="avatar" src={avatar} alt="User avatar" width="48" />
-    <p>{name}</p>
-  </li>
-    )
+    <Item>
+    {isOnline ? <StatusOn></StatusOn> : <StatusOff></StatusOff>}
+    <Avatar src={avatar} alt={name} width="48" />
+    <Name>{name}</Name>
+  </Item>
+    );
 }
 
 
-FriendListItem.prototype={
-    friendData: PropTypes.shape({
+FriendListItem.prototype={    
     avatar: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     isOnline: PropTypes.bool.isRequired,
-})
 }
